@@ -1,0 +1,111 @@
+#!/bin/bash
+
+# удалить предыдущий контейнер
+docker container rm -f proxy
+docker network rm frontend
+
+# Создаём сеть
+docker network create frontend
+
+# #OR
+# docker network create -d bridge frontend
+#!/bin/bash
+
+# удалить предыдущий контейнер
+docker container rm -f proxy
+docker network rm frontend
+
+# Создаём сеть
+docker network create frontend
+
+# Получить список всех существующих сетей.
+docker network ls
+#!/bin/bash
+
+# удалить предыдущий контейнер
+docker container rm -f proxy
+docker network rm frontend
+
+# Создаём сеть
+docker network create frontend
+
+# Запустить контейне с nginx.
+docker container run -d -p 80:80 --name proxy nginx
+
+# Присоединить контейнер к сети
+docker network connect frontend proxy
+#!/bin/bash
+
+# удалить предыдущий контейнер
+docker container rm -f proxy
+docker network rm frontend
+
+# Создаём сеть
+docker network create frontend
+
+# Запустить контейне с nginx.
+docker container run -d -p 80:80 --name proxy nginx
+
+docker container inspect proxy --format "{{ .NetworkSettings.Networks }}" # one network
+
+# Присоединить контейнер к сети
+docker network connect frontend proxy
+
+docker container inspect proxy --format "{{ .NetworkSettings.Networks }}" # two networks
+
+# Отсоединить контейнер от сети
+docker network disconnect frontend proxy
+
+docker container inspect proxy --format "{{ .NetworkSettings.Networks }}" # one network
+#!/bin/bash
+
+# удалить предыдущий контейнер
+docker container rm -f proxy
+docker network rm frontend
+
+# Создаём сеть
+docker network create frontend
+
+# Запустить контейне с nginx.
+# docker container run -d -p 80:80 --name proxy nginx
+
+#OR
+# добавляет контенер в определённую сеть
+docker container run -d -p 80:80 --name proxy --net frontend nginx
+
+# Получить детальную информацию о сети
+docker network inspect frontend
+#!/bin/bash
+
+# удалить предыдущий контейнер
+docker container rm -f proxy
+docker network rm frontend
+
+# Создаём сеть
+docker network create frontend
+
+# Запустить контейне с nginx.
+# docker container run -d -p 80:80 --name proxy nginx
+
+docker container run -d -p 80:80 --name proxy --net frontend nginx
+
+# Удалить все не используемые сети
+docker network prune
+#!/bin/bash
+
+# удалить предыдущий контейнер
+docker container rm -f proxy
+docker network rm frontend
+
+# Создаём сеть
+docker network create frontend
+
+# Запустить контейне с nginx.
+docker container run -d --net frontend --net-alias search elasticsearch:2
+docker container run -d --net frontend --net-alias search elasticsearch:2
+
+# nslookup
+docker container run --rm --net frontend alpine nslookup search
+
+# curl server info
+# docker container run --rm --net frontend centos curl -s search:9200
