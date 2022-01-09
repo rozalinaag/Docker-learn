@@ -1,0 +1,186 @@
+#!/bin/bash
+
+# Скачиваем образы для демо
+docker image pull nginx
+docker image pull alpine
+
+# Получить список локально скачанных образов
+docker image ls
+
+#OR
+# docker images
+#!/bin/bash
+
+# Скачиваем образы для демо
+docker image pull nginx
+docker image pull alpine
+
+# Получить список локально скачанных образов
+docker image ls --digests
+#!/bin/bash
+
+# Скачиваем образы для демо
+docker image pull nginx
+docker image pull alpine:3.7
+docker image pull alpine:2.6
+
+# Получить список локально скачанных образов
+docker image ls alpine
+
+#OR
+# docker image ls alpine:3.7
+#!/bin/bash
+
+# Скачиваем последнюю версию образа на локальный компьютер
+docker pull nginx
+
+# Аналогично команде выше
+# docker pull nginx:latest
+#!/bin/bash
+
+# Скачиваем определённую версию образа на локальный компьютер
+docker pull nginx:1.13
+
+#!/bin/bash
+
+# Скачиваем образ на локальный компьютер
+docker pull --all-tags alpine
+
+#OR
+# docker pull -a alpine
+
+#!/bin/bash
+
+# Скачиваем образ на локальный компьютер
+docker pull alpine
+
+# Скачает все доступные образы alpine
+docker pull -a alpine
+
+#!/bin/bash
+
+# Удалить всё что не используется
+docker system prune -a -f
+
+# Скачиваем образ на локальный компьютер
+docker pull alpine:latest
+# Скачает тот же образ что и latest так как 3.9 поседняя текущая верси
+docker pull alpine:3.9
+# Скачает тот же образ что и latest так как 3.9.3 поседняя текущая верси
+docker pull alpine:3.9.3
+
+#!/bin/bash
+
+# Удалить всё что не используется
+docker system prune -a -f
+
+# Скачиваем образ на локальный компьютер
+docker pull nginx:latest
+
+# Скачает ту же версию nginx но с другим базовым образом
+docker pull nginx:1.15.12-alpine
+
+#!/bin/bash
+
+# Удалить всё что не используется
+docker system prune -a -f
+
+# Скачиваем пользовательский образ на локальный компьютер
+docker image pull fholzer/nginx-brotli
+
+#!/bin/bash
+
+# Удалить всё что не используется
+docker system prune -a -f
+
+# Скачиваем пользовательский образ на локальный компьютер
+docker image pull fholzer/nginx-brotli
+
+# Получаем подробную информацию про образ
+docker image inspect fholzer/nginx-brotli
+
+#!/bin/bash
+
+# Удалить всё что не используется
+docker system prune -a -f
+
+# Скачиваем пользовательский образ на локальный компьютер
+docker image pull fholzer/nginx-brotli
+
+# Получаем подробную информацию про образ
+docker image inspect fholzer/nginx-brotli --format "{{.Config.Env}}"
+
+#!/bin/bash
+
+# Удалить всё что не используется
+docker system prune -a -f
+
+# Скачиваем пользовательский образ на локальный компьютер
+docker image pull fholzer/nginx-brotli
+
+# Получаем информацию про слои
+docker image history fholzer/nginx-brotli
+
+#!/bin/bash
+
+# Удалить всё что не используется
+docker system prune -a -f
+
+# Скачиваем пользовательский образ на локальный компьютер
+docker image pull fholzer/nginx-brotli
+
+# Получаем подробную информацию про слои
+docker image history --no-trunc fholzer/nginx-brotli
+
+#!/bin/bash
+
+# Удалить всё что не используется
+docker system prune -a -f
+
+# Скачиваем пользовательский образ на локальный компьютер
+docker image pull fholzer/nginx-brotli
+
+# Cоздаём копию образа для docker hub registry
+docker image tag fholzer/nginx-brotli sotream/brotli
+
+#!/bin/bash
+
+# Удалить всё что не используется
+docker system prune -a -f
+
+# Скачиваем пользовательский образ на локальный компьютер
+docker image pull fholzer/nginx-brotli
+
+# Cоздаём копию образа для docker hub registry
+docker image tag fholzer/nginx-brotli sotream/brotli
+docker image tag fholzer/nginx-brotli sotream/brotli:0.0.1
+
+#!/bin/bash
+
+# Удалить всё что не используется
+docker system prune -a -f
+
+# Скачиваем пользовательский образ на локальный компьютер
+docker image pull fholzer/nginx-brotli
+
+# Cоздаём копию образа для third party registry
+docker image tag fholzer/nginx-brotli localhost:5000/brotli
+
+# OR
+docker image tag fholzer/nginx-brotli sotream.xyz/brotli
+#!/bin/bash
+
+# Удалить всё что не используется
+docker system prune -a -f
+
+# Скачиваем пользовательский образ на локальный компьютер
+docker image pull fholzer/nginx-brotli
+
+# Cоздаём копию образа для docker hub registry
+docker image tag fholzer/nginx-brotli sotream/brotli
+docker image tag fholzer/nginx-brotli sotream/brotli:0.0.1
+
+# Пуш образа в репозиторий
+docker image push sotream/brotli
+# AND
+docker image push sotream/brotli:0.0.1
